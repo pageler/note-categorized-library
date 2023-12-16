@@ -1,10 +1,14 @@
-import "../src/css/main.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Route, Routes } from "react-router-dom";
+import { LandingPage } from "./pages/landingPage/LandingPage";
 
 function App() {
     return (
-        <>
-            <h1>Hello World!</h1>
-        </>
+        <div>
+            <Routes>
+                <Route path="/" element={<LandingPage />} />
+            </Routes>
+        </div>
     );
 }
 
