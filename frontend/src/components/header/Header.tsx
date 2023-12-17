@@ -18,7 +18,7 @@ export const Header = (props: HeaderProps) => {
                         fontSize: "2.5em",
                     }}
                 >
-                    Markdown Note Taking Categorized App
+                    Your Note Taking App
                 </Navbar.Brand>
 
                 <Dropdown>
