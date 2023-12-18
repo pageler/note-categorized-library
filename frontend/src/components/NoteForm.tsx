@@ -123,7 +123,11 @@ export const NoteForm = ({
                             Markdown Reference
                         </a>
 
-                        <Button type="submit" variant="primary">
+                        <Button
+                            type="submit"
+                            variant="primary"
+                            className="saveBtn"
+                        >
                             Save Note
                         </Button>
 
@@ -131,10 +135,7 @@ export const NoteForm = ({
                             <Button
                                 type="button"
                                 variant="outline-secondary"
-                                style={{
-                                    paddingLeft: "25px",
-                                    paddingRight: "25px",
-                                }}
+                                className="cancelBtn"
                             >
                                 Cancel
                             </Button>

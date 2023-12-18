@@ -76,7 +76,7 @@ export const NoteList = ({
                     <Col xs="auto">
                         <Stack direction="horizontal" gap={2}>
                             <Link to="/new">
-                                <Button variant="primary">
+                                <Button variant="primary" className="createBtn">
                                     Create New Note
                                 </Button>
                             </Link>

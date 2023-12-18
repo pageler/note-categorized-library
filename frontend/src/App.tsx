@@ -60,6 +60,14 @@ function App() {
         });
     }
 
+    function onDeleteNote(id: string) {
+        if (window.confirm("'Delete Note' cannot be undone, are you sure?")) {
+            setNotes((prevNotes) => {
+                return prevNotes.filter((note) => note.id !== id);
+            });
+        }
+    }
+
     function onAddTag(tag: Tag) {
         setTags((prevTags) => [...prevTags, tag]);
     }
@@ -109,8 +117,14 @@ function App() {
                         />
                     }
                 />
-                <Route path="/:id" element={<NoteLayout />}>
-                    <Route index element={<ViewNote />} />
+                <Route
+                    path="/:id"
+                    element={<NoteLayout notes={notesWithTags} />}
+                >
+                    <Route
+                        index
+                        element={<ViewNote onDeleteNote={onDeleteNote} />}
+                    />
                     <Route path="edit" element={<EditNote />} />
                 </Route>
                 <Route path="*" element={<Navigate to="/list" />} />
