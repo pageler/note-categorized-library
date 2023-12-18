@@ -8,8 +8,9 @@ import { NewNote } from "./pages/newNote/NewNote";
 import { NoteLayout } from "./components/NoteLayout";
 import { EditNote } from "./pages/editNote/EditNote";
 import { ViewNote } from "./pages/viewNote/ViewNote";
-import { useState } from "react";
 import { v4 as uuidV4 } from "uuid";
+import { useLocalStorage } from "./components/useLocalStorage";
+import { useMemo } from "react";
 
 export type NoteData = {
     title: string;
@@ -37,8 +38,18 @@ export type Note = {
 } & NoteData;
 
 function App() {
-    const [notes, setNotes] = useState<RawNote[]>([]);
-    const [tags, setTags] = useState<Tag[]>([]);
+    const [notes, setNotes] = useLocalStorage<RawNote[]>("notes", []);
+    const [tags, setTags] = useLocalStorage<Tag[]>("tags", []);
+
+    // Convert the RawNote[] and Tag[] to actual notes with tags:
+    const notesWithTags = useMemo(() => {
+        return notes.map((note) => {
+            return {
+                ...note,
+                tags: tags.filter((tag) => note.tagIds.includes(tag.id)),
+            };
+        });
+    }, [notes, tags]);
 
     function onCreateNote({ tags, ...data }: NoteData) {
         setNotes((prevNotes) => {
@@ -53,13 +64,41 @@ function App() {
         setTags((prevTags) => [...prevTags, tag]);
     }
 
+    function onUpdateTag(id: string, label: string) {
+        setTags((prevTags) => {
+            return prevTags.map((tag) => {
+                if (tag.id === id) {
+                    return { ...tag, label };
+                } else {
+                    return tag;
+                }
+            });
+        });
+    }
+
+    function onDeleteTag(id: string) {
+        setTags((prevTags) => {
+            return prevTags.filter((tag) => tag.id !== id);
+        });
+    }
+
     return (
         <div>
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
-                <Route path="/list" element={<NoteList />} />
+                <Route
+                    path="/list"
+                    element={
+                        <NoteList
+                            availableTags={tags}
+                            notes={notesWithTags}
+                            onUpdateTag={onUpdateTag}
+                            onDeleteTag={onDeleteTag}
+                        />
+                    }
+                />
                 <Route
                     path="/new"
                     element={

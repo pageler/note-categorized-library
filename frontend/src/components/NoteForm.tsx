@@ -43,7 +43,9 @@ export const NoteForm = ({
                     <Row>
                         <Col>
                             <FormGroup controlId="title">
-                                <Form.Label>Title</Form.Label>
+                                <Form.Label>
+                                    <i>Title:</i>
+                                </Form.Label>
                                 <Form.Control
                                     required
                                     ref={titleRef}
@@ -54,7 +56,10 @@ export const NoteForm = ({
 
                         <Col>
                             <Form.Group controlId="tags">
-                                <Form.Label>Category Tags</Form.Label>
+                                <Form.Label>
+                                    <i>Category Tags:</i>
+                                </Form.Label>
+                                {/* CreatableReactSelect with properties: */}
                                 <CreatableReactSelect
                                     isMulti
                                     onCreateOption={(label) => {
@@ -93,7 +98,9 @@ export const NoteForm = ({
                     </Row>
 
                     <Form.Group controlId="markdown">
-                        <Form.Label>Body (Markdown)</Form.Label>
+                        <Form.Label>
+                            <i>Body (Markdown):</i>
+                        </Form.Label>
                         <Form.Control
                             required
                             as="textarea"
@@ -120,7 +127,7 @@ export const NoteForm = ({
                             Save Note
                         </Button>
 
-                        <Link to="..">
+                        <Link to="-1">
                             <Button
                                 type="button"
                                 variant="outline-secondary"

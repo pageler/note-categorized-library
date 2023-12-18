@@ -35,7 +35,7 @@ export const Header = (props: HeaderProps) => {
                             User Profile
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-2">
-                            Log out of Library
+                            Logout of Library
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
