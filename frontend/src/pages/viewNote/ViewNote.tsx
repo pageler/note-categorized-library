@@ -28,13 +28,17 @@ export const ViewNote = ({ onDeleteNote }: ViewNoteProps) => {
                     <Col xs="auto">
                         <Stack direction="horizontal" gap={2}>
                             <Link to={`/${note.id}/edit`}>
-                                <Button variant="primary" className="editBtn">
+                                <Button
+                                    variant="primary"
+                                    className="editBtn btn"
+                                >
                                     Edit Note Details
                                 </Button>
                             </Link>
 
                             <Button
                                 variant="outline-danger"
+                                className="btn"
                                 onClick={() => {
                                     onDeleteNote(note.id);
                                     navigate("/list");
@@ -46,7 +50,7 @@ export const ViewNote = ({ onDeleteNote }: ViewNoteProps) => {
                             <Link to="/list">
                                 <Button
                                     variant="outline-secondary"
-                                    className="secondaryBtn"
+                                    className="secondaryBtn btn"
                                 >
                                     To Note List Page
                                 </Button>

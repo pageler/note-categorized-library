@@ -76,12 +76,16 @@ export const NoteList = ({
                     <Col xs="auto">
                         <Stack direction="horizontal" gap={2}>
                             <Link to="/new">
-                                <Button variant="primary" className="createBtn">
+                                <Button
+                                    variant="primary"
+                                    className="createBtn btn"
+                                >
                                     Create New Note
                                 </Button>
                             </Link>
                             <Button
                                 variant="outline-secondary"
+                                className="btn"
                                 onClick={() => setEditTagsModalIsOpen(true)}
                             >
                                 Edit Category Tags

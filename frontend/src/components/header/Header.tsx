@@ -1,4 +1,6 @@
 import { Container, Dropdown, Navbar } from "react-bootstrap";
+import "./Header.css";
+import { Link } from "react-router-dom";
 
 type HeaderProps = {};
 
@@ -6,26 +8,15 @@ export const Header = (props: HeaderProps) => {
     return (
         <Navbar style={{ backgroundColor: "#d9b18c" }}>
             <Container>
-                <Navbar.Brand
-                    className="brand"
-                    href="/"
-                    style={{
-                        marginTop: "10px",
-                        textAlign: "center",
-                        textDecoration: "underline",
-                        color: "navy",
-                        fontFamily: "Lobster",
-                        fontSize: "2.5em",
-                    }}
-                >
-                    Your Note Taking App
+                <Navbar.Brand className="brand">
+                    <Link to="/">Your Note Taking App</Link>
                 </Navbar.Brand>
 
                 <Dropdown>
                     <Dropdown.Toggle
                         variant="outline-primary"
                         id="dropdown-basic"
-                        className="justify-content-end"
+                        className="justify-content-end btn"
                     >
                         User name
                     </Dropdown.Toggle>

@@ -126,7 +126,7 @@ export const NoteForm = ({
                         <Button
                             type="submit"
                             variant="primary"
-                            className="saveBtn"
+                            className="saveBtn btn"
                         >
                             Save Note
                         </Button>
@@ -135,7 +135,7 @@ export const NoteForm = ({
                             <Button
                                 type="button"
                                 variant="outline-secondary"
-                                className="cancelBtn"
+                                className="cancelBtn btn"
                             >
                                 Cancel
                             </Button>
