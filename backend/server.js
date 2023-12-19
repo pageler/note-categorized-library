@@ -2,10 +2,12 @@ const express = require("express");
 const notes = require("./data/notes");
 const dotenv = require("dotenv");
 const colors = require("@colors/colors");
+const connectDB = require("./config/db");
 
 const app = express();
 dotenv.config();
 colors.enable();
+connectDB();
 
 app.get("/", (req, res) => {
     res.send("Note Categorized Library API is running...");
