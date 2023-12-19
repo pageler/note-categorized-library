@@ -10,7 +10,8 @@ import { EditNote } from "./pages/editNote/EditNote";
 import { ViewNote } from "./pages/viewNote/ViewNote";
 import { v4 as uuidV4 } from "uuid";
 import { useLocalStorage } from "./components/useLocalStorage";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import axios from "axios";
 
 export type NoteData = {
     title: string;
@@ -46,7 +47,7 @@ function App() {
         return notes.map((note) => {
             return {
                 ...note,
-                tags: tags.filter((tag) => note.tagIds.includes(tag.id)),
+                tags: tags.filter((tag) => note.tagIds?.includes(tag.id)),
             };
         });
     }, [notes, tags]);
@@ -105,6 +106,22 @@ function App() {
             return prevTags.filter((tag) => tag.id !== id);
         });
     }
+
+    useEffect(() => {
+        const fetchNotes = async () => {
+            try {
+                const { data } = await axios.get("/api/notes");
+
+                setNotes(data);
+                setTags(data);
+                console.log("data", data);
+            } catch (error: any) {
+                console.log(error);
+            }
+        };
+
+        fetchNotes();
+    }, [setNotes, setTags]);
 
     return (
         <div>
