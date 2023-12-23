@@ -5,6 +5,7 @@ import { ErrorMessage } from "../../components/ErrorMessage";
 import { Loading } from "../../components/Loading";
 import { Link } from "react-router-dom";
 import axios, { AxiosRequestConfig } from "axios";
+import { Header } from "../../components/header/Header";
 
 type RegisterPageProps = {};
 
@@ -86,95 +87,104 @@ export const RegisterPage = (props: RegisterPageProps) => {
     };
 
     return (
-        <Container
-            className="my-4"
-            style={{
-                border: "4px solid grey",
-                padding: "20px",
-                width: "35%",
-                backgroundColor: "lightgrey",
-            }}
-        >
-            <h1 className="my-4 registerTitle">
-                <u>Register User</u>
-            </h1>
+        <>
+            <Header />
 
-            {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
-            {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
-            {loading && <Loading />}
+            <Container
+                className="my-4"
+                style={{
+                    border: "4px solid grey",
+                    padding: "20px",
+                    width: "35%",
+                    backgroundColor: "lightgrey",
+                }}
+            >
+                <h1 className="my-4 registerTitle">
+                    <u>Register User</u>
+                </h1>
 
-            <Form onSubmit={handleSubmit}>
-                <Form.Group className="my-4" controlId="name">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                        type="name"
-                        value={name}
-                        placeholder="Enter name"
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </Form.Group>
-
-                <Form.Group className="mb-4" controlId="email">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control
-                        type="email"
-                        value={email}
-                        placeholder="Enter email address"
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
-                </Form.Group>
-
-                <Form.Group className="mb-4" controlId="password">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        value={password}
-                        placeholder="Password"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </Form.Group>
-
-                <Form.Group className="mb-4" controlId="confirmPassword">
-                    <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        value={confirmPassword}
-                        placeholder="Confirm Password"
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
-                </Form.Group>
-
-                {picMessage && (
-                    <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
+                {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+                {message && (
+                    <ErrorMessage variant="danger">{message}</ErrorMessage>
                 )}
-                <Form.Group className="mb-4" controlId="pic">
-                    <Form.Label>Profile Picture</Form.Label>
-                    <Form.Control
-                        type="file"
-                        accept="image/png, image/jpeg, image/jpg"
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                            postDetails(e.target.files?.[0])
-                        }
-                    />
-                </Form.Group>
+                {loading && <Loading />}
 
-                <Button
-                    variant="primary"
-                    type="submit"
-                    className="mb-4 registerBtn"
-                >
-                    Submit
-                </Button>
-            </Form>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="my-4" controlId="name">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                            type="name"
+                            value={name}
+                            placeholder="Enter name"
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </Form.Group>
 
-            <Row className="py-4">
-                <Col>
-                    Returning User? <Link to="/login">Please Login Here</Link>
-                </Col>
-            </Row>
-        </Container>
+                    <Form.Group className="mb-4" controlId="email">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control
+                            type="email"
+                            value={email}
+                            placeholder="Enter email address"
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <Form.Text className="text-muted">
+                            We'll never share your email with anyone else.
+                        </Form.Text>
+                    </Form.Group>
+
+                    <Form.Group className="mb-4" controlId="password">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            value={password}
+                            placeholder="Password"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group className="mb-4" controlId="confirmPassword">
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            value={confirmPassword}
+                            placeholder="Confirm Password"
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    {picMessage && (
+                        <ErrorMessage variant="danger">
+                            {picMessage}
+                        </ErrorMessage>
+                    )}
+                    <Form.Group className="mb-4" controlId="pic">
+                        <Form.Label>Profile Picture</Form.Label>
+                        <Form.Control
+                            type="file"
+                            accept="image/png, image/jpeg, image/jpg"
+                            onChange={(
+                                e: React.ChangeEvent<HTMLInputElement>
+                            ) => postDetails(e.target.files?.[0])}
+                        />
+                    </Form.Group>
+
+                    <Button
+                        variant="primary"
+                        type="submit"
+                        className="mb-4 registerBtn"
+                    >
+                        Submit
+                    </Button>
+                </Form>
+
+                <Row className="py-4">
+                    <Col>
+                        Returning User?{" "}
+                        <Link to="/login">Please Login Here</Link>
+                    </Col>
+                </Row>
+            </Container>
+        </>
     );
 };

@@ -5,6 +5,7 @@ import { Loading } from "../../components/Loading";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios, { AxiosRequestConfig } from "axios";
+import { Header } from "../../components/header/Header";
 
 type LoginPageProps = {};
 
@@ -42,62 +43,66 @@ export const LoginPage = (props: LoginPageProps) => {
     };
 
     return (
-        <Container
-            className="my-4"
-            style={{
-                border: "4px solid grey",
-                padding: "20px",
-                width: "35%",
-                backgroundColor: "lightgrey",
-            }}
-        >
-            <h1 className="mb-4 loginTitle">
-                <u>User Login</u>
-            </h1>
+        <>
+            <Header />
 
-            {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+            <Container
+                className="my-4"
+                style={{
+                    border: "4px solid grey",
+                    padding: "20px",
+                    width: "35%",
+                    backgroundColor: "lightgrey",
+                }}
+            >
+                <h1 className="mb-4 loginTitle">
+                    <u>User Login</u>
+                </h1>
 
-            {loading && <Loading />}
+                {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
 
-            <Form onSubmit={submitHandler}>
-                <Form.Group controlId="email" className="my-4">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                        type="email"
-                        value={email}
-                        placeholder="Enter Email Address"
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
-                </Form.Group>
+                {loading && <Loading />}
 
-                <Form.Group controlId="password" className="mb-4">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        value={password}
-                        placeholder="Password"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </Form.Group>
+                <Form onSubmit={submitHandler}>
+                    <Form.Group controlId="email" className="my-4">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                            type="email"
+                            value={email}
+                            placeholder="Enter Email Address"
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <Form.Text className="text-muted">
+                            We'll never share your email with anyone else.
+                        </Form.Text>
+                    </Form.Group>
 
-                <Button
-                    variant="primary"
-                    type="submit"
-                    className="mb-4 loginBtn"
-                >
-                    Submit
-                </Button>
+                    <Form.Group controlId="password" className="mb-4">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            value={password}
+                            placeholder="Password"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </Form.Group>
 
-                <Row className="py-4">
-                    <Col>
-                        New User?{" "}
-                        <Link to="/register">Please Register Here</Link>
-                    </Col>
-                </Row>
-            </Form>
-        </Container>
+                    <Button
+                        variant="primary"
+                        type="submit"
+                        className="mb-4 loginBtn"
+                    >
+                        Submit
+                    </Button>
+
+                    <Row className="py-4">
+                        <Col>
+                            New User?{" "}
+                            <Link to="/register">Please Register Here</Link>
+                        </Col>
+                    </Row>
+                </Form>
+            </Container>
+        </>
     );
 };

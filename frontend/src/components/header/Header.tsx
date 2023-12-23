@@ -1,10 +1,12 @@
 import { Container, Dropdown, Navbar } from "react-bootstrap";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 type HeaderProps = {};
 
 export const Header = (props: HeaderProps) => {
+    const navigate = useNavigate();
+
     return (
         <Navbar style={{ backgroundColor: "#d9b18c" }}>
             <Container>
@@ -25,7 +27,14 @@ export const Header = (props: HeaderProps) => {
                         <Dropdown.Item href="#/action-1">
                             User Profile
                         </Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
+                        <Dropdown.Item
+                            onClick={() => {
+                                localStorage.removeItem("userInfo");
+                                localStorage.removeItem("notes");
+                                localStorage.removeItem("tags");
+                                navigate("/");
+                            }}
+                        >
                             Logout of Library
                         </Dropdown.Item>
                     </Dropdown.Menu>
