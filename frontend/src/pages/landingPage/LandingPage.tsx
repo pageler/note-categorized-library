@@ -1,9 +1,21 @@
 import { Button, Container, Row } from "react-bootstrap";
 import "./LandingPage.css";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 type LandingPageProps = {};
 
 export const LandingPage = (props: LandingPageProps) => {
+    // const navigate = useNavigate();
+
+    // useEffect(() => {
+    //     const userInfo = localStorage.getItem("userInfo");
+
+    //     if (userInfo) {
+    //         navigate("/noteList");
+    //     }
+    // }, [navigate]);
+
     return (
         <div className="landing">
             <Container>
@@ -25,7 +37,7 @@ export const LandingPage = (props: LandingPageProps) => {
                                     className="landingButton"
                                     variant="primary"
                                 >
-                                    Login
+                                    LOGIN
                                 </Button>
                             </a>
                             <a href="/register">
@@ -34,7 +46,7 @@ export const LandingPage = (props: LandingPageProps) => {
                                     className="landingButton"
                                     variant="outline-primary"
                                 >
-                                    Signup
+                                    SIGNUP
                                 </Button>
                             </a>
                         </div>

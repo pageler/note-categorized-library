@@ -1,0 +1,15 @@
+.registerPage {
+    border: "4px solid grey";
+    padding: "20px";
+    width: "35%";
+    background-color: "lightgrey";
+}
+
+.registerTitle {
+    color: navy;
+}
+
+.registerBtn {
+    padding-left: 30px;
+    padding-right: 30px;
+}
